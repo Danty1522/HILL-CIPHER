@@ -1,5 +1,7 @@
 # HILL CIPHER
 HILL CIPHER
+NAME: CHINTALA AMAN MONTY
+REG: 212224040054
 EX. NO: 3 AIM:
  
 
@@ -29,7 +31,58 @@ STEP-4: Multiply the two matrices to obtain the cipher text of length three.
 STEP-5: Combine all these groups to get the complete cipher text.
 
 ## PROGRAM 
+```
+
+#include <stdio.h>
+#include <string.h>
+#include <ctype.h>
+
+int main() {
+    char text[100];
+    int a=3, b=3, c=2, d=5;
+    int det=9, inv=3, i, x, y, p, q;
+    char enc[100];
+
+    printf("Enter plain text (even number of letters): ");
+    scanf("%99s", text);
+
+    for(i=0; text[i]; i++)
+        text[i] = toupper(text[i]) - 'A';
+
+    int len = strlen(text);
+
+    for(i=0; i<len; i+=2) {
+        x = text[i];
+        y = text[i+1];
+        p = (a*x + b*y) % 26;
+        q = (c*x + d*y) % 26;
+        enc[i] = p;
+        enc[i+1] = q;
+    }
+    enc[len] = '\0';
+
+    printf("Encrypted text: ");
+    for(i=0; i<len; i++)
+        printf("%c", enc[i] + 'A');
+
+    printf("\nDecrypted text: ");
+    for(i=0; i<len; i+=2) {
+        x = enc[i];
+        y = enc[i+1];
+        p = (inv * (5*x - 3*y + 2600)) % 26;
+        q = (inv * (-2*x + 3*y + 2600)) % 26;
+        printf("%c%c", p+'A', q+'A');
+    }
+
+    printf("\n");
+    return 0;
+}
+
+```
 
 ## OUTPUT
+<img width="888" height="622" alt="image" src="https://github.com/user-attachments/assets/dd4dc427-fa45-4635-a106-7dae5c198169" />
+
 
 ## RESULT
+Thus the program is successfully executed.
